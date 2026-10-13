@@ -6,40 +6,7 @@ class BestFirst {
     private State actual;
     private Ilayout objective;
 
-    static class State {
-        private Ilayout layout;
-        private State father;
-        private double g;
-
-        public State(Ilayout l, State n) {
-            layout = l;
-            father = n;
-            if (father != null)
-                g = father.g + l.getK();
-            else g = 0.0;
-        }
-
-        public String toString() {
-            return layout.toString();
-        }
-
-        public double getG() {
-            return g;
-        }
-
-        public int hashCode() {
-            return toString().hashCode();
-        }
-
-        public boolean equals(Object o) {
-            if (o == null) return false;
-            if (this.getClass() != o.getClass()) return false;
-            State n = (State) o;
-            return this.layout.equals(n.layout);
-        }
-    }
-
-    final private List<State> sucessores(State n) {
+    private List<State> sucessores(State n) {
         List<State> sucs = new ArrayList<>();
         List<Ilayout> children = n.layout.children();
         for (Ilayout e : children) {
@@ -83,5 +50,38 @@ class BestFirst {
             }
         }
         return null;
+    }
+
+    static class State {
+        private final Ilayout layout;
+        private final State father;
+        private final double g;
+
+        public State(Ilayout l, State n) {
+            layout = l;
+            father = n;
+            if (father != null)
+                g = father.g + l.getK();
+            else g = 0.0;
+        }
+
+        public String toString() {
+            return layout.toString();
+        }
+
+        public double getG() {
+            return g;
+        }
+
+        public int hashCode() {
+            return toString().hashCode();
+        }
+
+        public boolean equals(Object o) {
+            if (o == null) return false;
+            if (this.getClass() != o.getClass()) return false;
+            State n = (State) o;
+            return this.layout.equals(n.layout);
+        }
     }
 }

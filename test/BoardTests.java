@@ -1,13 +1,13 @@
-import java.io.StringWriter;
+import org.junit.jupiter.api.Test;
+
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PuzzleUnitTests {
+public class BoardTests {
     @Test
     public void testConstructor() {
         Board b = new Board("023145678");
