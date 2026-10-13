@@ -20,8 +20,7 @@ public class AStarSearch {
     }
 
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
-        abertos = new PriorityQueue<>(10,
-                (s1, s2) -> (int) Math.signum(s1.getF() - s2.getF()));
+        abertos = new PriorityQueue<>(10, Comparator.comparingDouble(State::getF));
         Map<Ilayout, State> fechados = new HashMap<>();
         abertos.add(new State(s, null));
         List<State> sucs;
@@ -42,7 +41,10 @@ public class AStarSearch {
                 fechados.put(atual.layout, atual);
                 sucs = this.sucessores(atual);
                 for (State child : sucs) {
-                    if (!fechados.containsKey(child.layout) && !abertos.contains(child)) {
+                    State foundState = fechados.get(child.layout);
+
+                    if (foundState == null || child.getG() < foundState.getG()) {
+                        fechados.put(child.layout, child);
                         abertos.add(child);
                     }
                 }
@@ -81,7 +83,7 @@ public class AStarSearch {
         }
 
         public int hashCode() {
-            return toString().hashCode();
+            return layout.hashCode();
         }
 
         public boolean equals(Object o) {
