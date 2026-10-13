@@ -1,4 +1,7 @@
+import core.Ilayout;
 import org.junit.jupiter.api.Test;
+import puzzles.Board;
+import search.BestFirst;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

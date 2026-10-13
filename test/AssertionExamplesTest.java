@@ -1,7 +1,12 @@
+import org.junit.jupiter.api.Test;
+import puzzles.Board;
+import search.BestFirst;
+
 import java.time.Duration;
 import java.util.Iterator;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 public class AssertionExamplesTest {
     // Integer.clone() in the original is inaccessible. This small class

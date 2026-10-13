@@ -1,9 +1,9 @@
-package tests;
+package java.tests;
 
-import core.Ilayout;
 import puzzles.BallSortLayout;
 import puzzles.Board;
 import search.BestFirst;
+
 import java.util.Iterator;
 
 public class TestRunner {
