@@ -1,7 +1,8 @@
 package search;
 
-import java.util.*;
 import core.Ilayout;
+
+import java.util.*;
 
 public class BestFirst {
     protected Queue<State> abertos;
@@ -55,8 +56,8 @@ public class BestFirst {
     }
 
     public static class State {
-        private final Ilayout layout;
-        private final State father;
+        final Ilayout layout;
+        final State father;
         private final double g;
 
         public State(Ilayout l, State n) {

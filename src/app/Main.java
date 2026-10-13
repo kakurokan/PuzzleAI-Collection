@@ -1,13 +1,13 @@
 package app;
 
 import puzzles.BallSortLayout;
-import search.BestFirst;
+import search.AStarSearch;
 
 import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         int height = sc.nextInt();
         int tubes = sc.nextInt();
@@ -19,15 +19,12 @@ public class Main {
                 throw new IllegalArgumentException();
             configuration.append(line).append('\n');
         }
-        BestFirst s = new BestFirst();
-        Iterator<BestFirst.State> it =
+        AStarSearch s = new AStarSearch();
+        Iterator<AStarSearch.State> it =
                 s.solve(new BallSortLayout(configuration.toString()), null);
         if (it == null) System.out.println("no solution found");
         else while (it.hasNext()) {
-            BestFirst.State i = it.next();
-
-            System.out.println(i.toString());
-
+            AStarSearch.State i = it.next();
             if (!it.hasNext()) System.out.println((int) i.getG());
         }
         sc.close();

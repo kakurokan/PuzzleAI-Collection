@@ -17,4 +17,10 @@ public interface Ilayout {
      * Cost of moving into this configuration: 1 for this puzzle.
      */
     double getK();
+
+    /**
+     *
+     * Cost of heuristic of the current to goal
+     */
+    double getHeuristic(Ilayout goal);
 }

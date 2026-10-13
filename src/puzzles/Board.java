@@ -1,9 +1,10 @@
 package puzzles;
 
+import core.Ilayout;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import core.Ilayout;
 
 public class Board implements Ilayout, Cloneable {
     private static final int dim = 3;
@@ -92,6 +93,11 @@ public class Board implements Ilayout, Cloneable {
 
     public double getK() {
         return 1;
+    }
+
+    @Override
+    public double getHeuristic(Ilayout goal) {
+        return 0;
     }
 
     @Override

@@ -1,10 +1,11 @@
 package puzzles;
 
+import core.Ilayout;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
-import core.Ilayout;
 
 public class BallSortLayout implements Ilayout, Cloneable {
     private final int K;
@@ -98,6 +99,24 @@ public class BallSortLayout implements Ilayout, Cloneable {
     @Override
     public double getK() {
         return K;
+    }
+
+    @Override
+    public double getHeuristic(Ilayout goal) {
+        double h = 0.0;
+        for (Stack<Character> tube : tubes) {
+            if (tube.isEmpty()) {
+                continue;
+            }
+            char base = tube.get(0);
+            for (int i = 1; i < tube.size(); i++) {
+                if (tube.get(i) != base) {
+                    h = tube.size() - i;
+                    break;
+                }
+            }
+        }
+        return h;
     }
 
     @Override
