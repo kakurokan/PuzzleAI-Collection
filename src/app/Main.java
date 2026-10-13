@@ -1,9 +1,10 @@
 package app;
 
-import java.util.Iterator;
-import java.util.Scanner;
 import puzzles.BallSortLayout;
 import search.BestFirst;
+
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -24,6 +25,9 @@ public class Main {
         if (it == null) System.out.println("no solution found");
         else while (it.hasNext()) {
             BestFirst.State i = it.next();
+
+            System.out.println(i.toString());
+
             if (!it.hasNext()) System.out.println((int) i.getG());
         }
         sc.close();

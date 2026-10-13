@@ -1,3 +1,5 @@
+package test.puzzles;
+
 import app.Main;
 import org.junit.jupiter.api.Test;
 

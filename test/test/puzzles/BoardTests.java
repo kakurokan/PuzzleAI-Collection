@@ -1,3 +1,5 @@
+package test.puzzles;
+
 import core.Ilayout;
 import org.junit.jupiter.api.Test;
 import puzzles.Board;
