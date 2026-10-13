@@ -182,9 +182,3 @@ This repository does not include an explicit license file. If you want to make t
 
 Maintained by kakurokan (https://github.com/kakurokan).
 
----
-
-If you'd like, I can also:
-- add a GitHub Actions workflow to run the tests on every push (CI),
-- create an `assets/` folder and add placeholder screenshots,
-- add a sample `pom.xml` for Maven build + test integration.
