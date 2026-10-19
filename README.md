@@ -1,8 +1,8 @@
-# eight-puzzle-solver
+# PuzzleAI-Collection
 
 [![Java](https://img.shields.io/badge/Java-25-brightgreen.svg)](https://openjdk.org/projects/jdk/25/)
-[![Issues](https://img.shields.io/github/issues/kakurokan/eight-puzzle-solver)](https://github.com/kakurokan/eight-puzzle-solver/issues)
-[![Stars](https://img.shields.io/github/stars/kakurokan/eight-puzzle-solver?style=social)](https://github.com/kakurokan/eight-puzzle-solver)
+[![Issues](https://img.shields.io/github/issues/kakurokan/PuzzleAI-Collection)](https://github.com/kakurokan/PuzzleAI-Collection/issues)
+[![Stars](https://img.shields.io/github/stars/kakurokan/PuzzleAI-Collection?style=social)](https://github.com/kakurokan/PuzzleAI-Collection)
 
 Puzzle solvers in plain Java, built around a common state interface (`Ilayout`) and two search strategies:
 
@@ -30,7 +30,9 @@ test/
   AssertionExamplesTest.java
   test/puzzles/BoardTests.java
   test/puzzles/BallSortTests.java
-samples/                      8-puzzle examples (see "Samples" below)
+samples/
+  ball-sort/                  input for app.Main and expected output
+  eight-puzzle/               8-puzzle examples (initial and goal boards)
 ```
 
 ## Requirements
@@ -74,6 +76,12 @@ Output:
 
 If the puzzle has no solution, the program prints `no solution found`.
 
+Or run a sample file:
+
+```bash
+java -cp out app.Main < samples/ball-sort/sample2.in   # prints 6
+```
+
 ## Running tests
 
 With the [JUnit Platform Console Standalone](https://central.sonatype.com/artifact/org.junit.platform/junit-platform-console-standalone) JAR:
@@ -88,7 +96,15 @@ Alternatively, open the project in IntelliJ IDEA and run the `test/` folder.
 
 ## Samples
 
-The files in `samples/` are **8-puzzle** examples, not ball-sort input, so they cannot be piped into `app.Main`. Each `.in` has two lines — the initial board and the goal board, as 9 digits with `0` for the blank — and the matching `.out` shows the solution path followed by the number of moves.
+- `samples/ball-sort/` — input for `app.Main` (`.in`) and the expected minimum number of moves (`.out`). To check them all:
+
+  ```bash
+  for f in samples/ball-sort/*.in; do
+    java -cp out app.Main < "$f" | diff -q - "${f%.in}.out" && echo "$f ok"
+  done
+  ```
+
+- `samples/eight-puzzle/` — **8-puzzle** examples. They are not ball-sort input, so they cannot be piped into `app.Main`. Each `.in` has two lines: the initial board and the goal board, as 9 digits with `0` for the blank. The matching `.out` shows the solution path followed by the number of moves.
 
 ```
 023145678
