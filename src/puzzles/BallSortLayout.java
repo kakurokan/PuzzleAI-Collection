@@ -108,6 +108,8 @@ public class BallSortLayout implements Ilayout, Cloneable {
             }
             char base = tube.get(0);
             total += tube.size();
+            colorBlocks.merge(base, 1, Math::max);
+
 
             for (int i = 1; i < tube.size(); i++) {
                 char actualBall = tube.get(i);
