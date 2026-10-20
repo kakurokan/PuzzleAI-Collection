@@ -7,12 +7,12 @@ import java.util.*;
 public class AStarSearch {
     protected Queue<State> abertos;
 
-    private List<State> sucessores(State n) {
+    private List<State> sucessores(State n, Ilayout goal) {
         List<State> sucs = new ArrayList<>();
         List<Ilayout> children = n.layout.children();
         for (Ilayout e : children) {
             if (n.father == null || !e.equals(n.father.layout)) {
-                State nn = new State(e, n);
+                State nn = new State(e, n, goal);
                 sucs.add(nn);
             }
         }
@@ -22,7 +22,7 @@ public class AStarSearch {
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
         abertos = new PriorityQueue<>(10, Comparator.comparingDouble(State::getF));
         Map<Ilayout, State> fechados = new HashMap<>();
-        abertos.add(new State(s, null));
+        abertos.add(new State(s, null, goal));
         List<State> sucs;
 
         while (!abertos.isEmpty()) {
@@ -39,7 +39,7 @@ public class AStarSearch {
                 return path.iterator();
             } else {
                 fechados.put(atual.layout, atual);
-                sucs = this.sucessores(atual);
+                sucs = this.sucessores(atual, goal);
                 for (State child : sucs) {
                     State foundState = fechados.get(child.layout);
 
@@ -59,7 +59,7 @@ public class AStarSearch {
         private final double f;
         public State father;
 
-        public State(Ilayout l, State father) {
+        public State(Ilayout l, State father, Ilayout goal) {
             layout = l;
             this.father = father;
             if (father != null) {
@@ -67,7 +67,7 @@ public class AStarSearch {
             } else {
                 g = 0.0;
             }
-            f = g + l.getHeuristic(null);
+            f = g + l.getHeuristic(goal);
         }
 
         public String toString() {
